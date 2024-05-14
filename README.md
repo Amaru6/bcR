@@ -13,6 +13,4 @@ Puedes instalarlo de la siguiente manera:
 
 ``` r
 devtools::install_github("https://github.com/Amaru6/bcR")
-#> Skipping install of 'bcR' from a github remote, the SHA1 (922c70d8) has not changed since last install.
-#>   Use `force = TRUE` to force installation
 ```
