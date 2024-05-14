@@ -1,0 +1,108 @@
+---
+output: html_document
+---
+
+
+```{r setup_0, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+```{r function-consultar_api}
+#' Consulta la API del BCR
+#' 
+#' `consultar_bcrp_api()` consulta y recibe los datos obtenidos del [API para desarrolladores](https://estadisticas.bcrp.gob.pe/estadisticas/series/ayuda/api).
+#' 
+#' @param codigos String. Vector conteniendo los códigos de serie respectivos. Los códigos deben tener una misma frecuencia, de otro modo se elegirá la frecuencia del primer elemento del vector y se mostrarán las series que correspondan a esa frecuencia.
+#' @param desde Opcional. Entero. Periodo inicial.
+#' @param hasta Opcional. Entero. Periodo final.
+#' @param idioma Idioma en el que se retornará el resultado. Por defecto igual a "esp" (Español), aunque es posible también "ing" (Inglés).
+#' @param ... Opcional. Información adicional a enviar junto con la solicitud.
+#' @returns Un data frame.
+#' @examples
+#' consultar_bcrp_api(codigos = "PN38705PM", desde = "2013", hasta = "2024")
+#' 
+#' # Usa ... para enviar información adicional dentro de la cabecera de la solicitud, con propósitos de identificación y transparencia.
+#' consultar_bcrp_api(codigos = "PN01770AM", desde = "2020", hasta = "2024", `User-Agent` = "Hola desde R.")
+#' @importFrom httr2 request req_headers req_perform resp_body_html
+#' @importFrom rvest html_table
+#' @export
+
+consultar_bcrp_api <- function(codigos, desde = NULL, hasta = NULL, idioma = "esp", ...){
+  
+  codigos_longitud <- length(codigos)
+  base_url <- "https://estadisticas.bcrp.gob.pe/estadisticas/series/api" 
+  codigos <- paste0(trimws(codigos), collapse = "-")
+  
+  if(codigos_longitud > 10) warning("De acuerdo a la documentación, solamente se puede realizar la consulta a 10 códigos como máximo.")
+  if(codigos_longitud == 0) stop("Debe consultar al menos un código.")
+  if((!is.null(desde) & is.null(hasta))|(is.null(desde) & !is.null(hasta))) stop("Por favor, introduzca un rango de búsqueda")
+  
+  if(!is.null(desde) & !is.null(hasta)){
+    if(hasta < desde){
+      stop("El valor del argumento `desde` debe ser menor que el argumento `hasta`")}
+    url_usar <- sprintf("%s/%s/html/%s/%s/%s", base_url, codigos, desde, hasta, idioma) 
+  } else if (is.null(desde) & is.null(hasta)){
+    url_usar <- sprintf("%s/%s", base_url, codigos)
+  }
+  
+  url_usar |> 
+    request() |>
+    req_headers(
+      ...
+    ) |>
+    req_perform() |>
+    resp_body_html() -> respuesta_raw
+  
+  respuesta_raw |>
+    html_table() |>
+    Filter(
+      f = Negate(\(a){
+        ncol(a[grep("(?i)x\\d{1,}",colnames(a))]) == ncol(a)
+      }),
+      x = _) |>
+    _[[1]] -> respuesta
+  respuesta
+
+}
+```
+
+```{r function-codigos_de_serie}
+#' Extrae todos los códigos de serie disponibles dentro de BCRPData 
+#' 
+#' `conseguir_metadatos()` consigue el listado de códigos más actualizado directamente de BCRPData. 
+#' @param x No requerido.
+#' @returns Un data frame.
+#' @examples
+#' todos_los_codigos <- conseguir_metadatos()
+#' 
+#' # A partir de este data.frame podemos explorar la cantidad de datos que tenemos disponible.
+#' 
+#' subset(todos_los_codigos,grepl("PBI",`Categoría de serie`))
+#' @importFrom withr with_tempfile
+#' @importFrom httr2 request req_perform
+#' @importFrom readr read_delim locale
+#' @export
+
+conseguir_metadatos <- function(x){
+  
+  with_tempfile(
+  "temporal",
+  {
+    request("https://estadisticas.bcrp.gob.pe/estadisticas/series/metadata") |>
+      req_perform(path = temporal)
+    
+    suppressMessages(
+      datos <- read_delim(
+      temporal,
+      locale = locale(encoding = "latin1"),
+      delim = ";",
+      show_col_types = FALSE)
+    )
+    datos <- datos[-grep("\\.{1,}\\d{1,}", colnames(datos))]
+    datos
+  }
+)
+
+}
+
+```

@@ -1,0 +1,22 @@
+Package: bcR
+Title: BcR: Un Paquete Para Conseguir Datos Del BCRP
+Version: 0.1
+Authors@R: 
+    person("Julio", "Collazos", , "julio.collazos@unmsm.edu.pe", role = c("aut", "cre"))
+Description: Consulta BCRP API directamente desde R.
+License: MIT + file LICENSE
+Imports: 
+    httr2,
+    readr,
+    rvest,
+    withr
+Suggests: 
+    knitr,
+    rmarkdown
+VignetteBuilder: 
+    knitr
+Config/fusen/version: 0.5.2
+Encoding: UTF-8
+Language: es
+Roxygen: list(markdown = TRUE)
+RoxygenNote: 7.3.1

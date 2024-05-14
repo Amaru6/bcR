@@ -1,0 +1,46 @@
+---
+title: "Development actions history"
+output: html_document
+editor_options: 
+  chunk_output_type: console
+---
+
+All commands that you use to use when developing packages...
+
+# First time just after creating the project
+
+- Fill the following chunk to create the DESCRIPTION of your package
+
+```{r description}
+# Describe your package
+fusen::fill_description(
+  pkg = here::here(),
+  fields = list(
+    Title = "bcR: Un paquete para conseguir datos del BCRP",
+    Description = "Consulta BCRP API directamente desde R.",
+    `Authors@R` = c(
+      person("Julio", "Collazos", email = "julio.collazos@unmsm.edu.pe", role = c("aut", "cre"))
+    ),
+    Language = "es",
+    Version = "0.1"
+  ),
+  overwrite = TRUE
+)
+# Define License with use_*_license()
+usethis::use_mit_license("John Doe")
+```
+
+
+# Inflar Rmarkdown
+
+```{r development-inflate, eval=FALSE}
+# Run but keep eval=FALSE to avoid infinite loop
+# Execute in the console directly
+fusen::inflate(flat_file = "dev/flat_functions_to_use.Rmd",
+               vignette_name = "dev-funciones_usar",
+               overwrite = T
+               )
+
+```
+
+

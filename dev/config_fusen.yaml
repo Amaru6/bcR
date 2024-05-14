@@ -1,0 +1,13 @@
+flat_functions_to_use.Rmd:
+  path: dev/flat_functions_to_use.Rmd
+  state: active
+  R: R/consultar_bcrp_api.R
+  tests: []
+  vignettes: vignettes/dev-funciones_usar.Rmd
+  inflate:
+    flat_file: dev/flat_functions_to_use.Rmd
+    vignette_name: dev-funciones_usar
+    open_vignette: true
+    check: true
+    document: true
+    overwrite: 'yes'
