@@ -11,25 +11,19 @@ Eliminando la necesidad de descargar los datos manualmente.
 El paquete está disponible únicamente, por el momento, por GitHub.
 Puedes instalarlo de la siguiente manera:
 
-``` r
-devtools::install_github("https://github.com/Amaru6/bcR")
-#> Downloading GitHub repo Amaru6/bcR@HEAD
-#> openssl (2.1.2 -> 2.2.0) [CRAN]
-#> Installing 1 packages: openssl
-#> Installing package into '/home/julio/R/x86_64-pc-linux-gnu-library/4.3'
-#> (as 'lib' is unspecified)
-#> ── R CMD build ─────────────────────────────────────────────────────────────────
-#>      checking for file ‘/tmp/RtmpAJe8y0/remotes39c44a367706/Amaru6-bcR-f867318/DESCRIPTION’ ...  ✔  checking for file ‘/tmp/RtmpAJe8y0/remotes39c44a367706/Amaru6-bcR-f867318/DESCRIPTION’
-#>   ─  preparing ‘bcR’:
-#>    checking DESCRIPTION meta-information ...  ✔  checking DESCRIPTION meta-information
-#>   ─  checking for LF line-endings in source and make files and shell scripts
-#>   ─  checking for empty or unneeded directories
-#>   ─  building ‘bcR_0.1.tar.gz’
-#>      
-#> 
-#> Installing package into '/home/julio/R/x86_64-pc-linux-gnu-library/4.3'
-#> (as 'lib' is unspecified)
-```
+    #> Downloading GitHub repo Amaru6/bcR@HEAD
+    #> 
+    #> ── R CMD build ─────────────────────────────────────────────────────────────────
+    #>      checking for file ‘/tmp/RtmpctNSGa/remotes3ca94b5d3e5f/Amaru6-bcR-c50d969/DESCRIPTION’ ...  ✔  checking for file ‘/tmp/RtmpctNSGa/remotes3ca94b5d3e5f/Amaru6-bcR-c50d969/DESCRIPTION’
+    #>   ─  preparing ‘bcR’:
+    #>      checking DESCRIPTION meta-information ...  ✔  checking DESCRIPTION meta-information
+    #>   ─  checking for LF line-endings in source and make files and shell scripts
+    #>   ─  checking for empty or unneeded directories
+    #>   ─  building ‘bcR_0.1.tar.gz’
+    #>      
+    #> 
+    #> Installing package into '/home/julio/R/x86_64-pc-linux-gnu-library/4.3'
+    #> (as 'lib' is unspecified)
 
 ## Ejemplo
 
