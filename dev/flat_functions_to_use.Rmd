@@ -19,10 +19,10 @@ knitr::opts_chunk$set(echo = TRUE)
 #' @param ... Opcional. Información adicional a enviar junto con la solicitud.
 #' @returns Un data frame.
 #' @examples
-#' consultar_bcrp_api(codigos = "PN38705PM", desde = "2013", hasta = "2024")
+#' consultar_bcrp_api(codigos = "PN38705PM", desde = 2013, hasta = 2024)
 #' 
 #' # Usa ... para enviar información adicional dentro de la cabecera de la solicitud, con propósitos de identificación y transparencia.
-#' consultar_bcrp_api(codigos = "PN01770AM", desde = "2020", hasta = "2024", `User-Agent` = "Hola desde R.")
+#' consultar_bcrp_api(codigos = "PN01770AM", desde = 2020, hasta = 2024, `User-Agent` = "Hola desde R.")
 #' @importFrom httr2 request req_headers req_perform resp_body_html
 #' @importFrom rvest html_table
 #' @export

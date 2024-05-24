@@ -24,8 +24,8 @@ Un data frame.
 \code{consultar_bcrp_api()} consulta y recibe los datos obtenidos del \href{https://estadisticas.bcrp.gob.pe/estadisticas/series/ayuda/api}{API para desarrolladores}.
 }
 \examples{
-consultar_bcrp_api(codigos = "PN38705PM", desde = "2013", hasta = "2024")
+consultar_bcrp_api(codigos = "PN38705PM", desde = 2013, hasta = 2024)
 
 # Usa ... para enviar información adicional dentro de la cabecera de la solicitud, con propósitos de identificación y transparencia.
-consultar_bcrp_api(codigos = "PN01770AM", desde = "2020", hasta = "2024", `User-Agent` = "Hola desde R.")
+consultar_bcrp_api(codigos = "PN01770AM", desde = 2020, hasta = 2024, `User-Agent` = "Hola desde R.")
 }
