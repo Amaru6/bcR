@@ -11,19 +11,22 @@ Eliminando la necesidad de descargar los datos manualmente.
 El paquete está disponible únicamente, por el momento, por GitHub.
 Puedes instalarlo de la siguiente manera:
 
-    #> Downloading GitHub repo Amaru6/bcR@HEAD
-    #> 
-    #> ── R CMD build ─────────────────────────────────────────────────────────────────
-    #>      checking for file ‘/tmp/RtmpctNSGa/remotes3ca94b5d3e5f/Amaru6-bcR-c50d969/DESCRIPTION’ ...  ✔  checking for file ‘/tmp/RtmpctNSGa/remotes3ca94b5d3e5f/Amaru6-bcR-c50d969/DESCRIPTION’
-    #>   ─  preparing ‘bcR’:
-    #>      checking DESCRIPTION meta-information ...  ✔  checking DESCRIPTION meta-information
-    #>   ─  checking for LF line-endings in source and make files and shell scripts
-    #>   ─  checking for empty or unneeded directories
-    #>   ─  building ‘bcR_0.1.tar.gz’
-    #>      
-    #> 
-    #> Installing package into '/home/julio/R/x86_64-pc-linux-gnu-library/4.3'
-    #> (as 'lib' is unspecified)
+``` r
+devtools::install_github("https://github.com/Amaru6/bcR")
+#> Downloading GitHub repo Amaru6/bcR@HEAD
+#> 
+#> ── R CMD build ─────────────────────────────────────────────────────────────────
+#>      checking for file ‘/tmp/RtmpHTP7VI/remotes3d918ed1329/Amaru6-bcR-1e19b97/DESCRIPTION’ ...  ✔  checking for file ‘/tmp/RtmpHTP7VI/remotes3d918ed1329/Amaru6-bcR-1e19b97/DESCRIPTION’
+#>   ─  preparing ‘bcR’:
+#>      checking DESCRIPTION meta-information ...  ✔  checking DESCRIPTION meta-information
+#>   ─  checking for LF line-endings in source and make files and shell scripts
+#>   ─  checking for empty or unneeded directories
+#>   ─  building ‘bcR_0.1.tar.gz’
+#>      
+#> 
+#> Installing package into '/home/julio/R/x86_64-pc-linux-gnu-library/4.3'
+#> (as 'lib' is unspecified)
+```
 
 ## Ejemplo
 
