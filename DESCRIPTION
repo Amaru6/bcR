@@ -1,10 +1,11 @@
 Package: bcR
 Title: BcR: Un Paquete Para Conseguir Datos Del BCRP
-Version: 0.1
+Version: 0.2
 Authors@R: 
     person("Julio", "Collazos", , "julio.collazos@unmsm.edu.pe", role = c("aut", "cre"))
 Description: Consulta BCRP API directamente desde R.
-License: MIT + file LICENSE
+License: `use_mit_license()`, `use_gpl3_license()` or friends to pick a
+    license
 Imports: 
     httr2,
     readr,
