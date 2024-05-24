@@ -25,3 +25,25 @@ El paquete está disponible únicamente, por el momento, por GitHub. Puedes inst
 devtools::install_github("https://github.com/Amaru6/bcR")
 ```
 
+## Ejemplo
+
+```{r}
+library(bcR)
+library(tidyverse)
+consultar_bcrp_api(
+  codigos = c("PM04862AA") # Si no se incluye el rango de fechas, se extraerá las fechas más recientes.
+) -> datos_consultados
+
+datos_consultados # Esta es la respuesta de la API, sobre la cual podemos trabajar 
+
+datos_consultados |> 
+  mutate(
+    `Producto bruto interno y otros indicadores - PBI per cápita (S/ 2007)` = `Producto bruto interno y otros indicadores - PBI per cápita (S/ 2007)` |> 
+      str_replace("\\,", "\\.") |> as.numeric()
+  ) |> 
+  ggplot(aes(x = Fecha,
+             y = `Producto bruto interno y otros indicadores - PBI per cápita (S/ 2007)`)) + 
+  geom_line(linewidth = 1)
+
+```
+
